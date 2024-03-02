@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App {
+  text-align: center;
+}
+
+h1 {
+  color: #F9C7CA;
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+}
+
+.ListaTareas {
+  background: #002241;
+  margin-top: 5rem;
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.FormularioTarea {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.entrada-tarea {
+  outline: none;
+  background: none;
+  border: 1px solid #E7AAB2;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  width: 300px;
+  color: #fff;
+}
+
+.entrada-tarea::placeholder {
+  color: #ffffff4d;
+}
+
+.btn-tarea {
+  background: #E7AAB2;
+  color: #fff;
+  border: none;
+  padding: 0.55rem;
+  cursor: pointer;
+}
+
+.Tarea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #E7AAB2;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.Tarea p {
+  margin: 0; 
+}
+
+.fa-trash {
+  margin-left: 0.75rem;
+}
+
+.incompletada {
+  cursor: pointer;
+}
+
+.completada {
+  color: #F9C7CA;
+  text-decoration: line-through;
+}
+
+.edit-icon,
+.delete-icon {
+  cursor: pointer;
+}
+
+.completar-btn {
+  background-color: #E7AAB2;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.completar-btn:hover {
+  background-color: #F9C7CA;
+}
+
