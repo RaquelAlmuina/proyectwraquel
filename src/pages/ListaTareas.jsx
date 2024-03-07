@@ -2,30 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { FormularioTarea } from '../components/FormularioTarea.jsx';
 import { Tarea } from '../components/Tarea.jsx';
 import { FormularioEditarTarea } from '../components/FormularioEditarTarea.jsx';
-import { TheCatAPI } from "@thatapicompany/thecatapi"; // Importa TheCatAPI
+import { TheCatAPI } from "@thatapicompany/thecatapi"; 
 import { v4 as uuidv4 } from 'uuid';
 
 export const ListaTareas = () => {
     const [tareas, setTareas] = useState([]);
-    const [theCatImages, setTheCatImages] = useState([]);
+    const [theCatImage, setTheCatImage] = useState(null);
 
-    //La conexion a la API ealiza utilizando la biblioteca @thatapicompany/thecatapi, que proporciona acceso a la API de imágenes de gatos
-    //Al principio del archivo, importas la biblioteca TheCatAPI
-    //Se creo una instancia de  la API dentro del componente funcional ListaTareas, se crea una instancia de TheCatAPI con una clave de API específica
-    //La conexion está creada, sin embargo aun no la puedo hacer funcionar, creo es por los metodos que estoy intrntado utilizar
-    //Quiero que se muestren imagenes de gatos aleatoriamente
     useEffect(() => {
         const theCatAPI = new TheCatAPI("live_BIRxK2AtH5s2YF9DLCefqXGuhkTPMhz8HTro0lwn8kvkmzJ3l6CpNxVCH6GC9ZKB");
         theCatAPI.images
-            .searchImages({ limit: 5 }) 
+            .searchImages({ limit: 1 }) 
             .then(images => {
-                const formatImages = images.map((image) => ({
-                    id: uuidv4(),
-                    task: image.url,
-                    completed: false,
-                    isEditing: false
-                }));
-                setTheCatImages(formatImages);
+                if (images.length > 0) {
+                    const image = images[0];
+                    const formatImage = {
+                        id: uuidv4(),
+                        task: image.url,
+                        completed: false,
+                        isEditing: false
+                    };
+                    setTheCatImage(formatImage);
+                }
             })
             .catch(error => console.error("Error fetching cat images:", error));
     }, []);
@@ -62,6 +60,9 @@ export const ListaTareas = () => {
         <div className='ListaTareas'>
             <h1>¡Comencemos!</h1>
             <FormularioTarea agregarTarea={agregarTarea} />
+            <div className="gato-images" style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '20px' }}>
+                {theCatImage && <img src={theCatImage.task} alt="Cat" style={{ width: '200px', height: '200px' }} />}
+            </div>
             {tareas.map((tarea, index) => (
                 tarea.isEditing ? (
                     <FormularioEditarTarea editarTarea={editarTareaExistente} tarea={tarea} key={index} />
