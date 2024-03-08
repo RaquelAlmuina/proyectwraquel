@@ -8,8 +8,6 @@ uuidv4();
 export const TareasLocal = () => {
     const [tareas, setTareas] = useState([]);
 
-
-
     const agregarTarea = (tarea) => {
         const nuevasTareas = [...tareas, { id: uuidv4(), task: tarea, completed: false, isEditing: false }];
         setTareas(nuevasTareas);
@@ -40,7 +38,7 @@ export const TareasLocal = () => {
 
     return (
         <div className='TareasLocal'>
-            <h1>¡Haz cosas!</h1>
+            <h1></h1>
             <FormularioTarea agregarTarea={agregarTarea} />
             {tareas.map((tarea, index) => (
                 tarea.isEditing ? (
